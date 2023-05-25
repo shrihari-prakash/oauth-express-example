@@ -1,4 +1,4 @@
-// Most part of this model sample comes from 
+// Most part of this model sample comes from https://github.com/pedroetb/node-oauth2-server-example/blob/master/model.js
 
 const config = {
     clients: [{
