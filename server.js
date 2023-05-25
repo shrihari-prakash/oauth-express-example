@@ -97,7 +97,7 @@ const authenticate = async (req, res, next) => {
 };
 
 
-// Secure route.
+// Secure route that only authenticated users can access.
 app.get('/secure-area', authenticate, (req, res) => {
   /* 
     Now you have access to all the details about the token and user in `res.locals.oauth` set 
