@@ -1,9 +1,8 @@
 const express = require('express');
-const bodyParser = require('body-parser')
-const uuidv4 = require('uuidv4').v4;
+const bodyParser = require('body-parser');
 const OAuth2Server = require('@node-oauth/oauth2-server');
 const model = require('./model.js');
-const session = require('express-session')
+const session = require('express-session');
 
 const Request = OAuth2Server.Request;
 const Response = OAuth2Server.Response;
@@ -83,6 +82,8 @@ app.all('/oauth/token', async (req, res) => {
   }
 });
 
+
+// Middleware to verify requests are authenticated.
 const authenticate = async (req, res, next) => {
   try {
     const request = new Request(req);
@@ -95,6 +96,8 @@ const authenticate = async (req, res, next) => {
   }
 };
 
+
+// Secure route.
 app.get('/secure-area', authenticate, (req, res) => {
   /* 
     Now you have access to all the details about the token and user in `res.locals.oauth` set 
@@ -103,6 +106,7 @@ app.get('/secure-area', authenticate, (req, res) => {
   res.json({ message: 'Hello World!' });
 });
 
+// Create an user session before allowing them to get an authorization code.
 app.post('/login', (req, res) => {
   const user = model.config.users.find(
     (user) => user.username === req.body.username && user.password === req.body.password
