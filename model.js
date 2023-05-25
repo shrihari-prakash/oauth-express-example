@@ -1,5 +1,5 @@
 // Most part of this model sample comes from https://github.com/pedroetb/node-oauth2-server-example/blob/master/model.js.
-// However, the model fixes a lot of stuff in authorization code.
+// However, this fixes a lot of stuff in authorization code grant.
 
 const config = {
     clients: [{
